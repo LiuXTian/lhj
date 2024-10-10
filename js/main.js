@@ -6,27 +6,27 @@ var isclearbets=false;
 var squareItemConfigs=[
 						{
 							name:"王",
-							coin:"*120"
-						},
-						{
-							name:"小王",
 							coin:"*50"
 						},
 						{
-							name:"77",
-							coin:"*40"
-						},
-						{
-							name:"小77",
-							coin:"*3"
-						},
-						{
-							name:"星星",
+							name:"小王",
 							coin:"*30"
 						},
 						{
+							name:"77",
+							coin:"*20"
+						},
+						{
+							name:"小77",
+							coin:"*2"
+						},
+						{
+							name:"星星",
+							coin:"*20"
+						},
+						{
 							name:"小星星",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"西瓜",
@@ -34,23 +34,23 @@ var squareItemConfigs=[
 						},
 						{
 							name:"小西瓜",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"铃铛",
-							coin:"*20"
+							coin:"*10"
 						},
 						{
 							name:"小铃铛",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"柠檬",
-							coin:"*20"
+							coin:"*10"
 						},
 						{
 							name:"小柠檬",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"橙子",
@@ -58,7 +58,7 @@ var squareItemConfigs=[
 						},
 						{
 							name:"小橙子",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"苹果",
@@ -66,7 +66,7 @@ var squareItemConfigs=[
 						},
 						{
 							name:"小苹果",
-							coin:"*3"
+							coin:"*2"
 						},
 						{
 							name:"幸运",
@@ -110,8 +110,10 @@ var bets=[
 			key:"15",
 			value:0
 		}];
-
-var curcoin=1000;
+if(!localStorage.getItem("num")) {
+	localStorage.setItem("num", 1000);
+}
+var curcoin=Number(localStorage.getItem("num"));
 var bonuscoin=0;
 window.onload=init();
 function init(){
@@ -222,12 +224,14 @@ function betIn(index){
 
 	curcoin-=1;
 	coinField.text="coin:"+curcoin;
+	localStorage["num"] = curcoin;
 }
 function resetBonus(){
 	curcoin+=bonuscoin;
 	bonuscoin=0;
 	coinField.text="coin:"+curcoin;
 	bonusField.text="bonus:"+bonuscoin;
+	localStorage["num"] = curcoin;
 }
 function calcBonus(item){
 	if(squareItemConfigs[item.key].type=="lucky1"){
@@ -341,6 +345,7 @@ function isInteger(obj){
  	return squares.length*(Math.floor(Math.random()*4)+3)+pos;
  }
 function startRoll(){
+	// return
 	if(isrolling)return;
 	var bcoin=getBetCoin();
 	if(bcoin<=0)return;
@@ -357,6 +362,7 @@ function startRoll(){
 	}
 
 	coinField.text="coin:"+curcoin;
+	localStorage["num"] = curcoin;
 	bonusField.text="bonus:"+bonuscoin;
 	isclearbets=false;
 
