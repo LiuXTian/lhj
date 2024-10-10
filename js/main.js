@@ -206,7 +206,7 @@ function clearBets(){
 		bets[i].target.numtext.text="0";
 	}
 }
-function betIn(index){
+async function betIn(index){
 	if(isrolling||curcoin<=0)return;
 
 	if(!isclearbets){
@@ -218,11 +218,12 @@ function betIn(index){
 
 	var item=bets[index].target;
 
-	item.bet();
+	await item.bet();
 
 	bets[index].value=parseInt(item.numtext.text);
 
 	curcoin-=1;
+	// document.getElementById("bgaudio").pause();
 	coinField.text="coin:"+curcoin;
 	localStorage["num"] = curcoin;
 }
@@ -392,6 +393,7 @@ function startRoll(){
 
 			var item=selectItem(curIndex);
 			soundplay();
+			// 旋转音效
 
 			if(count>=totalCount){
 				rollstop();
@@ -408,11 +410,11 @@ function startRoll(){
 	app.ticker.add(rollloop);
 }
 function soundplay(){
-	soundEffect(1587.33, 0, 0.2, "square", 1, 0, 0);
+	soundEffect(1587.33, 0, 0.2, "sine", 0.4, 0, 0);
 	//A
-	soundEffect(880, 0, 0.2, "square", 1, 0, 0.1);
+	soundEffect(880, 0, 0.2, "sine", 0.4, 0, 0.1);
 	// //High D
-	soundEffect(1174.66, 0, 0.3, "square", 1, 0, 0.2);
+	soundEffect(1174.66, 0, 0.3, "sine", 0.4, 0, 0.2);
 }
 function createStartButton(){
 	var container=new PIXI.Container();
@@ -472,6 +474,8 @@ function createBetItem(key,callback){
 	container.bet=function(){
 		container.numtext.text=parseInt(container.numtext.text)+1;
 		soundplay();
+		// 点击按钮音效
+		// document.getElementById("bgaudio").play();
 	}
 
 	return container;

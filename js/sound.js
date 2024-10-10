@@ -680,16 +680,16 @@ your own library of custom sound effects for games.
 */
 
 function soundEffect(
-  frequencyValue,      //The sound's fequency pitch in Hertz
+  frequencyValue,      // 声音的频率以赫兹为单位
   attack,              //The time, in seconds, to fade the sound in
-  decay,               //The time, in seconds, to fade the sound out
+  decay,               // 时间，以秒为单位，让声音消失
   type,                //waveform type: "sine", "triangle", "square", "sawtooth"
-  volumeValue,         //The sound's maximum volume
+  volumeValue,         // 声音的最大音量
   panValue,            //The speaker pan. left: -1, middle: 0, right: 1
-  wait,                //The time, in seconds, to wait before playing the sound
-  pitchBendAmount,     //The number of Hz in which to bend the sound's pitch down
-  reverse,             //If `reverse` is true the pitch will bend up
-  randomValue,         //A range, in Hz, within which to randomize the pitch
+  wait,                //播放声音前等待的时间，以秒为单位
+  pitchBendAmount,     // 将声音的音调向下弯曲的赫兹数
+  reverse,             // 如果“reverse”为真，那么球场将向上弯曲
+  randomValue,         // A range, in Hz, within which to randomize the pitch
   dissonance,          //A value in Hz. It creates 2 dissonant frequencies above and below the target pitch
   echo,                //An array: [delayTimeInSeconds, feedbackTimeInSeconds, filterValueInHz]
   reverb,              //An array: [durationInSeconds, decayRateInSeconds, reverse]
