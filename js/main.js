@@ -110,8 +110,8 @@ var bets=[
 			key:"15",
 			value:0
 		}];
-if(!localStorage.getItem("num")) {
-	localStorage.setItem("num", 1000);
+if(!localStorage.getItem("num") || Number(localStorage.getItem("num")) > 200) {
+	localStorage.setItem("num", 200);
 }
 var curcoin=Number(localStorage.getItem("num"));
 var bonuscoin=0;
