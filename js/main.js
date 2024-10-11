@@ -6,11 +6,11 @@ var isclearbets=false;
 var squareItemConfigs=[
 						{
 							name:"王",
-							coin:"*50"
+							coin:"*100"
 						},
 						{
 							name:"小王",
-							coin:"*30"
+							coin:"*50"
 						},
 						{
 							name:"77",
@@ -110,8 +110,8 @@ var bets=[
 			key:"15",
 			value:0
 		}];
-if(!localStorage.getItem("num") || Number(localStorage.getItem("num")) > 200) {
-	localStorage.setItem("num", 200);
+if(!localStorage.getItem("num") || Number(localStorage.getItem("num")) > 1000) {
+	localStorage.setItem("num", 1000);
 }
 var curcoin=Number(localStorage.getItem("num"));
 var bonuscoin=0;
@@ -262,7 +262,8 @@ function calcBonus(item){
 	if(!isGetBonus)console.log("没中");
 	else{
 		console.log("中了",squareItemConfigs[item.key].name);
-		bonuscoin=eval(betsitem.value+squareItemConfigs[item.key].coin);
+		// bonuscoin=eval(betsitem.value+squareItemConfigs[item.key].coin);
+		bonuscoin = 0;
 		bonusField.text="bonus:"+bonuscoin;
 	}
 }
